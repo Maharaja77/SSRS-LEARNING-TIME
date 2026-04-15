@@ -1,0 +1,255 @@
+**SSRS Expressions Cheat Sheet**
+
+---
+
+# 1. ODD / EVEN COLOR
+
+ID odd → Green | even → Red
+
+```vb
+=IIF(Fields!Id.Value MOD 2 = 1, "Green", "Red")
+```
+
+---
+
+# 2. VALUE BASED COLOR
+
+```vb
+=IIF(Fields!Salary.Value > 5000, "Green", "Red")
+```
+
+---
+
+# 3. ALTERNATE ROW BACKGROUND (ZEBRA)
+
+```vb
+=IIF(RowNumber(Nothing) MOD 2 = 0, "LightGray", "White")
+```
+
+---
+
+# 4. DATE & TIME EXPRESSIONS
+
+Current DateTime:
+
+```vb
+=Now()
+```
+
+Only Date:
+
+```vb
+=Today()
+```
+
+Formatted Date:
+
+```vb
+=Format(Now(),"dd-MM-yyyy")
+```
+
+Full DateTime:
+
+```vb
+=Format(Now(),"dd-MM-yyyy HH:mm:ss")
+```
+
+---
+
+# 5. PAGE NUMBER
+
+```vb
+="Page " & Globals!PageNumber & " of " & Globals!TotalPages
+```
+
+---
+
+# 6. USER NAME
+
+```vb
+=User!UserID
+```
+
+---
+
+# 7. ROW NUMBER / SERIAL NUMBER
+
+```vb
+=RowNumber(Nothing)
+```
+
+---
+
+# 8. SUM / TOTAL
+
+```vb
+=Sum(Fields!Salary.Value)
+```
+
+---
+
+# 9. AVERAGE
+
+```vb
+=Avg(Fields!Salary.Value)
+```
+
+---
+
+# 10. COUNT
+
+```vb
+=Count(Fields!Id.Value)
+```
+
+---
+
+# 11. NULL CHECK
+
+```vb
+=IIF(IsNothing(Fields!Name.Value), "No Data", Fields!Name.Value)
+```
+
+---
+
+# 12. STRING CONCAT
+
+```vb
+=Fields!Name.Value & " - " & Fields!Department.Value
+```
+
+---
+
+# 13. UPPER / LOWER
+
+```vb
+=UCase(Fields!Name.Value)
+```
+
+```vb
+=LCase(Fields!Name.Value)
+```
+
+---
+
+# 14. CONDITIONAL TEXT
+
+```vb
+=IIF(Fields!Salary.Value > 5000, "High Salary", "Low Salary")
+```
+
+---
+
+# 15. PARAMETER DISPLAY
+
+```vb
+=Parameters!BookName.Value
+```
+
+---
+
+# 16. DATE RANGE DISPLAY
+
+```vb
+="From: " & Parameters!FromDate.Value & " To: " & Parameters!ToDate.Value
+```
+
+---
+
+# 17. VISIBILITY (HIDE / SHOW)
+
+```vb
+=IIF(Fields!Salary.Value < 3000, True, False)
+```
+
+(True = Hide)
+
+---
+
+# 18. GROUP TOTAL
+
+```vb
+=Sum(Fields!TotalAmount.Value, "CategoryGroup")
+```
+
+---
+
+# 19. FONT STYLE CONDITION
+
+```vb
+=IIF(Fields!TotalAmount.Value > 200, "Bold", "Normal")
+```
+
+---
+
+# 20. FONT SIZE CONDITION
+
+```vb
+=IIF(Fields!Quantity.Value > 5, "14pt", "10pt")
+```
+
+---
+
+# 21. MULTIPLE CONDITIONS (SWITCH)
+
+```vb
+=Switch(
+ Fields!Salary.Value < 3000, "Red",
+ Fields!Salary.Value < 6000, "Orange",
+ Fields!Salary.Value >= 6000, "Green"
+)
+```
+
+---
+
+# 22. DATE ADD
+
+```vb
+=DateAdd("d", 7, Today())
+```
+
+---
+
+# 23. DATE DIFFERENCE
+
+```vb
+=DateDiff("d", Fields!StartDate.Value, Fields!EndDate.Value)
+```
+
+---
+
+# 24. DYNAMIC REPORT TITLE
+
+```vb
+="Sales Report - " & Format(Now(),"MMM yyyy")
+```
+
+---
+
+# 25. COMMON REAL PROJECT EXPRESSIONS
+
+Header:
+
+```vb
+="BookShop Report"
+```
+
+Footer:
+
+```vb
+="Page " & Globals!PageNumber & " of " & Globals!TotalPages
+```
+
+Date:
+
+```vb
+="Generated on: " & Format(Now(),"dd-MM-yyyy HH:mm")
+```
+
+Row Color:
+
+```vb
+=IIF(Fields!Id.Value MOD 2 = 1, "Green", "Red")
+```
+
+---
