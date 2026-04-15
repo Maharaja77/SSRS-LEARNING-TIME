@@ -1,0 +1,168 @@
+# 🚀 SSRS Installation Procedure (Step-by-Step)
+
+## 🔹 Step 1: Download SQL Server
+
+1. Go to official site:
+   👉 Microsoft SQL Server
+2. Download **SQL Server Developer Edition** (free)
+
+---
+
+## 🔹 Step 2: Install SQL Server
+
+1. Open downloaded file
+2. Click **“New SQL Server stand-alone installation”**
+3. Follow setup:
+
+   * Accept license
+   * Choose **Developer Edition**
+   * Select features:
+     ✔ Database Engine Services
+4. Instance:
+
+   * Default → `MSSQLSERVER` (recommended)
+5. Authentication:
+
+   * Choose **Mixed Mode**
+   * Set **username: sa**
+   * Set strong password
+6. Click **Install**
+
+---
+
+## 🔹 Step 3: Download SSRS (Separate Tool ⚠️)
+
+SSRS is NOT included in SQL Server (after 2017)
+
+1. Go to:
+   👉 SQL Server Reporting Services
+2. Download latest version
+
+---
+
+## 🔹 Step 4: Install SSRS
+
+1. Run SSRS installer
+2. Choose:
+
+   * ✔ Install Reporting Services
+3. Select:
+
+   * **Developer Edition (Free)**
+4. Click Install
+
+---
+
+## 🔹 Step 5: Configure SSRS (IMPORTANT 🔥)
+
+After install, open:
+👉 **Reporting Services Configuration Manager**
+
+### Configure these:
+
+### 1️⃣ Service Account
+
+* Keep default → Click Apply
+
+### 2️⃣ Web Service URL
+
+* Click Apply
+  👉 URL generated like:
+
+```
+http://localhost/ReportServer
+```
+
+---
+
+### 3️⃣ Database Setup
+
+* Click **Change Database**
+* Choose:
+  ✔ Create new report server database
+* Select your SQL Server instance
+* Finish wizard
+
+---
+
+### 4️⃣ Web Portal URL
+
+* Click Apply
+  👉 URL:
+
+```
+http://localhost/Reports
+```
+
+---
+
+## 🔹 Step 6: Test SSRS
+
+Open browser:
+
+👉 [http://localhost/Reports](http://localhost/Reports)
+
+If working → You will see SSRS web portal 🎉
+
+---
+
+## 🔹 Step 7: Install Visual Studio (for reports)
+
+Download:
+👉 Microsoft Visual Studio
+
+During installation select:
+✔ ASP.NET & Web Development
+
+---
+
+## 🔹 Step 8: Install SSRS Extension in Visual Studio
+
+1. Open Visual Studio
+2. Go to:
+   Extensions → Manage Extensions
+3. Install:
+   👉 **Microsoft Reporting Services Projects**
+
+---
+
+# ✅ Final Setup Ready
+
+Now you can:
+
+* Create `.rdl` reports
+* Connect SQL Server
+* Deploy to SSRS server
+
+---
+
+# 🔥 Common Errors (Important for You)
+
+### ❌ "Subscription can't be created"
+
+👉 Fix:
+
+* Check **Credentials in Data Source**
+* Select:
+  ✔ “Stored Credentials”
+
+---
+
+### ❌ Report not opening
+
+👉 Check:
+
+* SQL Server running
+* SSRS service running
+
+---
+
+# 💡 Simple Flow
+
+```
+SQL Server → Store Data
+SSRS → Create Reports
+Visual Studio → Design Reports
+```
+
+
