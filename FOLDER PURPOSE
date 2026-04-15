@@ -1,0 +1,265 @@
+# Every Folder Purpose — Complete Explanation 🔥
+
+---
+
+## 1️⃣ Solution Explorer (Right Side)
+
+```
+StudentDashboard (Solution)
+```
+```
+PURPOSE:
+├── இது entire project-ஓட container
+├── எல்லா files-உம் இதுக்குள்ள இருக்கு
+└── ஒரு company project மாதிரி
+    இதுக்குள்ள எல்லாமே இருக்கும்
+```
+
+---
+
+## 2️⃣ Shared Data Sources folder
+
+```
+Shared Data Sources
+  └── StudentDB_Source.rds
+```
+```
+PURPOSE:
+├── Database connection details save பண்றது
+├── Server name, DB name இதுல இருக்கு
+├── எல்லா reports-உம் இதை share பண்ணும்
+│
+├── REAL WORLD:
+│   ஒரு office-ல master key மாதிரி 🔑
+│   ஒரே key → எல்லா rooms திறக்கும்
+│
+└── BENEFIT:
+    Server மாறினா → இந்த file மட்டும்
+    change பண்ணினா போதும்
+```
+
+---
+
+## 3️⃣ Shared Datasets folder
+
+```
+Shared Datasets
+  (இப்போ empty)
+```
+```
+PURPOSE:
+├── Common queries save பண்றது
+├── Multiple reports same query
+│   use பண்ணும் போது இங்க save பண்ணுவோம்
+│
+├── REAL WORLD:
+│   Company-ல common MIS report query
+│   எல்லா departments use பண்றது மாதிரி
+│
+└── உன் project-ல:
+    இப்போ use பண்றதில்ல
+    (StudentDataset report-க்குள்ளே இருக்கு)
+```
+
+---
+
+## 4️⃣ Reports folder
+
+```
+Reports
+  └── StudentReport.rdl
+```
+```
+PURPOSE:
+├── Actual report files இங்க இருக்கு
+├── .rdl = Report Definition Language
+├── Design, Query, Parameters
+│   எல்லாமே இந்த file-ல save ஆகும்
+│
+├── REAL WORLD:
+│   Office-ல actual Excel report file மாதிரி
+│
+└── Multiple reports இங்க add பண்ணலாம்:
+    StudentReport.rdl
+    MarksReport.rdl
+    AttendanceReport.rdl
+```
+
+---
+
+## 5️⃣ Report Data Panel (Left Side)
+
+```
+Report Data Panel
+```
+```
+PURPOSE:
+├── இது StudentReport.rdl-ஓட
+│   எல்லா components-உம் இங்க show ஆகும்
+│
+└── இதுல 5 sections இருக்கு:
+```
+
+---
+
+## 6️⃣ Built-in Fields
+
+```
+Built-in Fields
+```
+```
+PURPOSE:
+├── SSRS default-ஆ தரும் fields
+│
+├── CONTAINS:
+│   ├── ReportName    → Report பெயர்
+│   ├── PageNumber    → Page எண்
+│   ├── TotalPages    → Total pages
+│   ├── ExecutionTime → Report run time
+│   └── UserID        → யார் பார்க்கிறாங்க
+│
+└── USE:
+    Header/Footer-ல
+    ="Page " & Globals!PageNumber
+```
+
+---
+
+## 7️⃣ Parameters
+
+```
+Parameters
+  ├── StudentName
+  ├── FromDate
+  └── ToDate
+```
+```
+PURPOSE:
+├── User input receive பண்றது
+├── Report filter பண்றது
+│
+├── StudentName:
+│   └── யார் data வேணும்?
+│       ALL or specific student
+│
+├── FromDate:
+│   └── எந்த date-ல இருந்து?
+│
+└── ToDate:
+    └── எந்த date வரை?
+```
+
+---
+
+## 8️⃣ Images
+
+```
+Images
+  (empty)
+```
+```
+PURPOSE:
+├── Report-ல use பண்ற images save பண்றது
+│
+├── REAL WORLD USE:
+│   ├── Company logo
+│   ├── School logo
+│   └── Watermark images
+│
+└── உன் project-ல:
+    இப்போ use பண்றதில்ல
+```
+
+---
+
+## 9️⃣ Data Sources
+
+```
+Data Sources
+  └── StudentDB_Source
+```
+```
+PURPOSE:
+├── இந்த report-க்கு எந்த DB?
+│   என்று specify பண்றது
+│
+├── Shared Data Source-ஐ
+│   இந்த report-க்கு link பண்றது
+│
+└── DIFFERENCE:
+    Shared Data Sources → Project level
+    Data Sources → Report level link
+```
+
+---
+
+## 🔟 Datasets
+
+```
+Datasets
+  ├── StudentDataset
+  └── StudentList
+```
+```
+StudentDataset:
+├── PURPOSE:
+│   Main report data supply பண்றது
+├── QUERY:
+│   Students + Marks JOIN
+│   Filter with parameters
+└── FIELDS:
+    StudentName, Class, Subject,
+    Marks, ExamDate
+
+StudentList:
+├── PURPOSE:
+│   Dropdown values supply பண்றது
+├── QUERY:
+│   ALL + Student names list
+└── USED IN:
+    StudentName parameter dropdown
+```
+
+---
+
+## Design Area (Middle)
+
+```
+Parameter Bar (Top):
+├── PURPOSE:
+│   User இங்க filter select பண்றான்
+├── Student Name → Dropdown
+├── From Date    → Date picker
+└── To Date      → Date picker
+
+Table:
+├── Header Row:
+│   └── Static text (column names)
+│       User-க்கு label show பண்றது
+└── Data Row:
+    └── Dynamic data
+        DB-ல இருந்து data வருது
+```
+
+---
+
+## 🔄 Everything Connected:
+
+```
+StudentDB_Source.rds
+        ↓ connects
+StudentDataset (query runs)
+        ↓ filtered by
+Parameters (user input)
+        ↓ displayed in
+Table (user sees data) ✅
+
+StudentList
+        ↓ supplies values to
+StudentName Parameter
+        ↓ shows as
+Dropdown in Preview ✅
+```
+
+---
+
